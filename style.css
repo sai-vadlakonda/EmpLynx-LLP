@@ -33,7 +33,6 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
   background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -53,7 +52,7 @@ img {
 
 /* Logo image */
 .logo-img {
-  width: 55px;
+  width: 80px;
   height: auto;
   margin: 0;
   display: block;
@@ -65,7 +64,7 @@ img {
 }
 
 .company-type {
-  margin-left: 10px; 
+  margin-left: 10px;
 }
 
 .logo span,
@@ -113,6 +112,39 @@ img {
 
 .cta-btn:hover {
   background-color: #3B82F6;
+}
+
+/* Default style only for links inside the nav UL */
+.nav-links ul li a {
+  position: relative;
+  text-decoration: none;
+  color: #000;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.nav-links ul li a:hover {
+  color: #1e3a8a;
+}
+
+/* Underline effect */
+.nav-links ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #1e3a8a;
+  transition: width 0.3s ease;
+}
+
+.nav-links ul li a.active::after {
+  width: 100%;
+}
+
+.nav-links ul li a.active {
+  color: #1e3a8a;
 }
 
 /* Hamburger Menu */
@@ -174,57 +206,137 @@ img {
   }
 }
 
-
 /* Home Section */
-.hero {
-  height: 90vh;
-  background: url('assets/home-img.png') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
+/* Hero Slider Styles */
+.hero-slider {
   position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.hero::after {
-  content: '';
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 58, 138, 0.6);
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
+.slide.active {
+  opacity: 1;
+}
+
+/* Common Hero Content Styling */
 .hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  animation: fadeInUp 1.5s ease forwards;
+  padding: 0 15px;
+  width: 90%;
+  max-width: 800px;
 }
 
 .hero-content h1 {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .hero-content p {
   font-size: 1.2rem;
-  margin: 1rem 0;
+  margin-bottom: 1.5rem;
 }
 
-.hero-btn {
-  background-color: #3B82F6;
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
+.cta-btn {
+  padding: 0.75rem 1.5rem;
+  background: #2563eb;
+  color: #fff;
   text-decoration: none;
-  font-weight: 600;
+  border-radius: 8px;
   transition: background 0.3s ease;
 }
 
-.hero-btn:hover {
-  background-color: #2563EB;
+.cta-btn:hover {
+  background: #1e40af;
+}
+
+.slide1-text {
+  color: #4e71a8;
+}
+
+.slide2-text {
+  top: 75%;
+  color: white;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    top: 70%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .cta-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    top: 65%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .slide1-text {
+    top: 75%;
+  }
+
+  .slide2-text {
+    top: 65%;
+    color: white;
+  }
+
+  .cta-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
 }
 
 /* Stats Section */
@@ -424,16 +536,6 @@ img {
   color: white;
 }
 
-.about-hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 58, 138, 0.6);
-}
-
 .about-hero-content {
   position: relative;
   z-index: 1;
@@ -618,16 +720,6 @@ img {
   color: white;
 }
 
-.services-hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 58, 138, 0.6);
-}
-
 .services-hero-content {
   position: relative;
   z-index: 1;
@@ -739,16 +831,6 @@ img {
   color: white;
 }
 
-.engagement-hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 58, 138, 0.6);
-}
-
 .engagement-hero-content {
   position: relative;
   z-index: 1;
@@ -856,16 +938,6 @@ img {
   color: white;
 }
 
-.why-hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 58, 138, 0.6);
-}
-
 .why-hero-content {
   position: relative;
   z-index: 1;
@@ -928,47 +1000,13 @@ img {
   color: #475569;
 }
 
-/* Stats Section */
-.stats-section {
-  background: #f1f5f9;
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.stat-box {
-  background: #ffffff;
-  padding: 2rem 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 3s ease;
-}
-
-.stat-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 2px 6px black;
-}
-
-.stat-box h3 {
-  font-size: 2rem;
-  color: #1E3A8A;
-  margin-bottom: 0.5rem;
-}
-
-.stat-box p {
-  font-size: 0.9rem;
-  color: #475569;
-}
-
 /* Why Details Section */
 .why-details {
   padding: 4rem 2rem;
+}
+
+.why-details h2 {
+  text-align: left;
 }
 
 .details-grid {
@@ -991,10 +1029,9 @@ img {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-
 /* Contact Hero Section */
 .contact-hero {
-  background: url('assets/contact-img.jpg') center/cover no-repeat;
+  background: url('assets/contact-img.png') center/cover no-repeat;
   height: 50vh;
   display: flex;
   align-items: center;
@@ -1002,16 +1039,6 @@ img {
   position: relative;
   text-align: center;
   color: white;
-}
-
-.contact-hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 58, 138, 0.6);
 }
 
 .contact-hero-content {
@@ -1150,7 +1177,7 @@ img {
 
 /* Hire Hero Section */
 .hire-hero {
-  background: url('assets/hire-img1.jpg') center/cover no-repeat;
+  background: url('assets/hire-img.jpg') center/cover no-repeat;
   height: 50vh;
   display: flex;
   align-items: center;
@@ -1158,16 +1185,6 @@ img {
   position: relative;
   text-align: center;
   color: white;
-}
-
-.hire-hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 58, 138, 0.6);
 }
 
 .hire-hero-content {

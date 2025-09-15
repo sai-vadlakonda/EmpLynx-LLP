@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Thank You | EmpLynx LLP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .thank-you-container {
+      background-color: white;
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      animation: slideIn 1s ease, glowBorder 3s infinite alternate;
+    }
+
+    h1 {
+      color: #28a745;
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .typing {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+      min-height: 60px;
+      text-align: center;
+    }
+
+    .cursor {
+      display: inline-block;
+      color: #28a745;
+      animation: blink 1s infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .redirect-info {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .back-button {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+    }
+
+    @keyframes glowBorder {
+      0% {
+        border-color: #28a745;
+        box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+      }
+
+      100% {
+        border-color: #007bff;
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .typing,
+      p {
+        font-size: 0.95rem;
+      }
+
+      .thank-you-container {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="thank-you-container">
+    <h1>Thank You for Reaching Out!</h1>
+    <div class="typing"><span id="text"></span><span class="cursor">|</span></div>
+    <p>We’ll get back to you as soon as possible. Have a great day!</p>
+    <p class="redirect-info">Redirecting to homepage in <span id="countdown">8</span> seconds...</p>
+    <a href="index.html" class="back-button">← Back to EmpLynx LLP</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+
+    const textElement = document.getElementById("text");
+    const lines = [
+      "Your message has been received successfully.",
+      "Thank you for your time and trust."
+    ];
+
+    let lineIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeLoop() {
+      const currentLine = lines[lineIndex];
+      if (isDeleting) {
+        charIndex--;
+        textElement.textContent = currentLine.substring(0, charIndex);
+      } else {
+        charIndex++;
+        textElement.textContent = currentLine.substring(0, charIndex);
+      }
+
+      let delay = isDeleting ? 30 : 50;
+
+      if (!isDeleting && charIndex === currentLine.length) {
+        delay = 1000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        lineIndex = (lineIndex + 1) % lines.length;
+        delay = 400;
+      }
+
+      setTimeout(typeLoop, delay);
+    }
+
+    typeLoop();
+
+    // Confetti burst
+    const duration = 1500;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      confetti({
+        particleCount: 6,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      });
+      confetti({
+        particleCount: 6,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+
+    // Countdown & Redirect
+    let countdown = 8;
+    const countdownElement = document.getElementById('countdown');
+
+    const timer = setInterval(() => {
+      countdown--;
+      countdownElement.textContent = countdown;
+      if (countdown === 0) {
+        clearInterval(timer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+</body>
+
+</html>

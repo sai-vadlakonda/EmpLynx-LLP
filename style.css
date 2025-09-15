@@ -41,33 +41,36 @@ img {
   z-index: 1000;
 }
 
+/* Logo container */
 .logo a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1e293b;
-}
-
-.logo-img {
-  width: 40px;       
-  height: auto;
-  margin-right: 10px;
-}
-
-.logo span {
-  color: #2563eb; 
-}
-
-.logo a {
-  text-decoration: none;
   font-size: 1.8rem;
   font-weight: 700;
-  color: #1E3A8A;
+  color: #3B82F6;
 }
 
-.logo span {
+/* Logo image */
+.logo-img {
+  width: 55px;
+  height: auto;
+  margin: 0;
+  display: block;
+}
+
+.brand-name {
+  display: inline-flex;
+  margin-left: 1px;
+}
+
+.company-type {
+  margin-left: 10px; 
+}
+
+.logo span,
+.brand-name span,
+.company-type {
   color: #3B82F6;
 }
 

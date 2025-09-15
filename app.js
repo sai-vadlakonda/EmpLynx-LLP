@@ -25,20 +25,6 @@ document.addEventListener('paste', (e) => {
   alert("Pasting is disabled on this website!");
 });
 
-// ==================== Disable Keyboard Shortcuts ====================
-document.addEventListener('keydown', function (e) {
-  if (e.ctrlKey || e.metaKey) {
-    if (['c', 'v', 'u', 's', 'a', 'x', 'p'].includes(e.key.toLowerCase())) {
-      e.preventDefault();
-      alert("Keyboard shortcuts are disabled on this website!");
-    }
-  }
-  if (e.key === "F12") {
-    e.preventDefault();
-    alert("Developer tools are disabled on this website!");
-  }
-});
-
 // ==================== Hamburger Menu ====================
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');

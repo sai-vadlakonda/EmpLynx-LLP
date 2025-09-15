@@ -73,10 +73,7 @@
             </div>
 
             <form class="hire-form" id="hireForm" action="https://formsubmit.co/sai2592004@gmail.com" method="POST">
-
-                <!-- FormSubmit hidden fields -->
-                <input type="hidden" name="_next"
-                    value="https://sai-vadlakonda.github.io/Sai-Vadlakonda-Portfolio/thankyou.html">
+                <input type="hidden" name="_next" value="https://sai-vadlakonda.github.io/EmpLynx-LLP/thankyou.html">
                 <input type="hidden" name="_captcha" value="false">
 
                 <!-- Company Info -->
@@ -97,7 +94,8 @@
 
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+91 9876543210" required>
+                    <input type="tel" id="phone" name="phone" placeholder="9876543210" required pattern="\d{10}"
+                        title="Enter a 10-digit phone number">
                 </div>
 
                 <!-- Hiring Requirements -->
